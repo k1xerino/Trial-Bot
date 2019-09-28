@@ -28,7 +28,7 @@ function getUserFromMention(client, mention) {
 }
 
 function makeTrialChannel(client, msg, name) {
-    msg.guild.createChannel("🚩"+getUserFromMention(client, name).username, { type: 'text' }).then(channel => {
+    msg.guild.createChannel(getUserFromMention(client, name).username, { type: 'text' }).then(channel => {
       moveChannelToTrialCategory(channel, msg);
       sendTrialMessage(channel);
     }).catch(console.error);
