@@ -4,7 +4,7 @@ const auth = require('./auth.json');
 
 const Trial = require('./Modules/Trial.js');
 const Accept = require('./Modules/Accept.js');
-const Reject = require('./Modules/Reject.js');
+const Decline = require('./Modules/Decline.js');
 const Delay = require('./Modules/Delay.js');
 
 client.on("message", msg => {
@@ -27,8 +27,8 @@ client.on("message", msg => {
       break;
 
     // Reject Trial and make him Guest again
-    case "reject":
-      Reject.start(Discord, client, msg, args);
+    case "decline":
+      Decline.start(Discord, client, msg, args);
       break;
 
     // Delay Judgement for x time
