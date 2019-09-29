@@ -1,4 +1,4 @@
-const DataHandler = require('./Modules/DataHandler.js');
+const DataHandler = require('./DataHandler.js');
 
 module.exports = {
   start: function(Discord, client, msg) {
