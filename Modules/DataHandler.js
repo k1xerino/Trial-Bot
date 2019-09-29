@@ -12,7 +12,7 @@ module.exports = {
 
   changeStatus: function(user, status) {
     Trials.set(user, status, "status");
-  }
+  },
 
   getUser: function(user) {
     return Trials.get(user);

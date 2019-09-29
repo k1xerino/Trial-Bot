@@ -6,11 +6,6 @@ const Trial = require('./Modules/Trial.js');
 const Accept = require('./Modules/Accept.js');
 const Decline = require('./Modules/Decline.js');
 const Delay = require('./Modules/Delay.js');
-const DataHandler = require('./Modules/DataHandler.js');
-
-client.on("ready", () => {
-  SQLHandler.startup();
-});
 
 client.on("message", msg => {
   if (!msg.content.startsWith("!")) return;
