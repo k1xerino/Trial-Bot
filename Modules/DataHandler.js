@@ -12,6 +12,7 @@ module.exports = {
     DataStorage.set(userid,{
       name: username,
       channel: trialchannel,
+      status: "trial",
       startdate: sdate,
       enddate: Date.now()+(14*24*60*3600+100)
     });
@@ -19,6 +20,11 @@ module.exports = {
                 "User:" + userid+
                 "Channel")
   },
+
+  changeStatus: function(user, status) {
+    DataStorage.set(user, status, "status");
+  },
+
   getTrial: function(userid) {
     return DataStorage.get(userid);
   }
