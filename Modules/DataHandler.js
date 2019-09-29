@@ -7,14 +7,14 @@ const DataStorage = new Enmap({
 
 module.exports = {
   newTrial: function(user, currentusername, channel) {
-    Trials.set(user, {name: currentusername, channel: channel, status: "trial", startdate: Date.now(), enddate: Date.now()+14});
+    DataStorage.set(user, {name: currentusername, channel: channel, status: "trial", startdate: Date.now(), enddate: Date.now()+(14 * 24 * 3600 * 1000)});
   },
 
   changeStatus: function(user, status) {
-    Trials.set(user, status, "status");
+    DataStorage.set(user, status, "status");
   },
 
   getUser: function(user) {
-    return Trials.get(user);
+    return DataStorage.get(user);
   }
 };

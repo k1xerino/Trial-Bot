@@ -8,13 +8,22 @@ module.exports = {
       let user = args[0];
       console.log("User: " + user);
       let discorduser = getUserFromMention(client, user);
-      console.log("Discorduser: " + user.username);
+      console.log("Discorduser: " + discorduser);
+      console.log("Discordusername: " + discorduser.username);
       let channel = makeChannel(client, msg, discorduser);
       channel.then(function(value) {
         console.log("Channel: " + value);
         if(channel == false) msg.channel.send("Could not create channel for: " + user.username); else {
           moveToTrial(value, msg);
           sendMessage(value);
+          DataHandler.newTrial(discorduser.id, discorduser.username, value);
+          var dataset = DataHandler.getUser(discorduser.id);
+          console.log("DB: ");
+          console.log("name: " + dataset.name);
+          console.log("channel: " + dataset.channel);
+          console.log("status: " + dataset.status);
+          console.log("startdate: " + Date(dataset.startdate));
+          console.log("enddate: " + Date(dataset.enddate));
         }
       });
       giveTrialRole(getUserFromMention(client, user), msg);
@@ -42,18 +51,18 @@ function getUserFromMention(client, mention) {
 function makeChannel(client, msg, discorduser) {
   console.log("Making Channel:");
   let username = discorduser.username
-  console.log("User " + discorduser.id);
+  console.log("User: " + discorduser.id);
   console.log("Username: " + username);
   let channel = msg.guild.createChannel(username, { type: 'text' });
   return channel;
 }
 
-function moveToTrial(channeltomove, msg){
+function moveToTrial(channel, msg){
   console.log("Moving Channel:");
-  console.log("Channel to move:" + channeltomove);
+  console.log("Channel to move:" + channel);
   let category = msg.guild.channels.find(c => c.name == "Trials" && c.type == "category");
   console.log("Category to move to: " + category);
-  channeltomove.setParent(category);
+  channel.setParent(category);
 }
 
 function sendMessage(channel){
