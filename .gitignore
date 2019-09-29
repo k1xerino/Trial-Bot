@@ -4,5 +4,3 @@ package.json
 package-lock.json
 runbot.bat
 LICENSE
-database.sqlite
-data/
